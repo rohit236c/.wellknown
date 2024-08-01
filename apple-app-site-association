@@ -1,14 +1,21 @@
 {
-
-    "applinks": {
-      "apps": [],
-      "details": [
-        {
-          "appID": "W64Y358YSS.com.orig3n.lifeprofile",
-          "paths": ["/email/verification/*" ]
-  
-        }
-      ]
-    }
-  
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "GMSGY63W5S.com.hdfc.payzapp.prodlz",
+        "paths": [
+          "NOT /_/*",
+          "/*"
+        ]
+      },
+      {
+        "appID": "W4NK847LUM.com.hdfcbank.payzapp",
+        "paths": [
+          "NOT /_/*",
+          "/*"
+        ]
+      }
+    ]
+  }
 }
