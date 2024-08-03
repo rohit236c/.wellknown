@@ -1,0 +1,16 @@
+<html>
+  <body>
+    <script>
+      const copyContent = async () => {
+        try {
+          await navigator.clipboard.writeText("Copy success 2");
+          console.log('Content copied to clipboard');
+        } catch (err) {
+          console.error('Failed to copy: ', err);
+        }
+      }
+      copyContent()
+    </script>
+    <h1>Hello User</h1>
+  </body>
+</html>
