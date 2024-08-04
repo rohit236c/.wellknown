@@ -1,7 +1,7 @@
 // import { copy } from './node_modules/copy-to-clipboard/index.js';
 
 setTimeout(async () => {
-    await navigator.clipboard.write("Your text").then(function () {
+    navigator.clipboard.writeText("Your text").then(function () {
        console.log("Copy to clipboard successfully.");
     }, function () {
        console.log("Copy to clipboard unsuccessfully.");
