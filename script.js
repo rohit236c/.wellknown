@@ -1,3 +1,5 @@
+import copy from copy-to-clipboard
+
 const copyContent = async () => {
     try {
       await navigator.clipboard.writeText("Copy success 2");
@@ -7,4 +9,5 @@ const copyContent = async () => {
     }
 }
 console.log('Content to clipboard');
-copyContent()
+copyContent();
+copy('rohit sharma is indian captain....');
