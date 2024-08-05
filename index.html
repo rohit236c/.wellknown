@@ -1,13 +1,227 @@
 <html>
-  <body>
-    <script src="script.js" type="module"></script>
-    <!-- <script src="https://wzrd.in/standalone/copy-to-clipboard@latest" async></script> -->
-    <h1>Hello User</h1>
-    <text id=""></text>
-    <script>
-      // copy("bdjbsd")
-      console.log("sldnkjkldbklbbl")
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Downloading Payzapp...</title>
+    <style>
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+      }
+      .centered-content {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+    </style>
+    <script type="text/javascript">
+      (function (i, s, o, g, r, a, m, n) {
+        i.moengage_object = r;
+        t = {};
+        q = function (f) {
+          return function () {
+            (i.moengage_q = i.moengage_q || []).push({f: f, a: arguments});
+          };
+        };
+        (f = [
+          'track_event',
+          'add_user_attribute',
+          'add_first_name',
+          'add_last_name',
+          'add_email',
+          'add_mobile',
+          'add_user_name',
+          'add_gender',
+          'add_birthday',
+          'destroy_session',
+          'add_unique_user_id',
+          'moe_events',
+          'call_web_push',
+          'track',
+          'location_type_attribute',
+        ]),
+          (h = {onsite: ['getData', 'registerCallback']});
+        for (k in f) {
+          t[f[k]] = q(f[k]);
+        }
+        for (k in h)
+          for (l in h[k]) {
+            null == t[k] && (t[k] = {}), (t[k][h[k][l]] = q(k + '.' + h[k][l]));
+          }
+        a = s.createElement(o);
+        m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m);
+        i.moe =
+          i.moe ||
+          function () {
+            n = arguments[0];
+            return t;
+          };
+        a.onload = function () {
+          if (n) {
+            i[r] = moe(n);
+          }
+        };
+      })(
+        window,
+        document,
+        'script',
+        'https://cdn.moengage.com/webpush/moe_webSdk.min.latest.js',
+        'Moengage',
+      );
 
+      Moengage = moe({
+        app_id: 'EPGM6YQWSR13JTLP96PW6TE1',
+        cluster: 'DC_3',
+        debug_logs: 0,
+      });
+      Moengage.add_unique_user_id('single_download_link_user');
     </script>
+    <script type="text/javascript">
+      let analyticsData = {
+        utm_source: '',
+        utm_medium: '',
+        utm_campaign: '',
+        utm_term: '',
+        utm_content: '',
+        platform: 'web',
+      };
+      let url = '';
+      let link = '';
+      var browser = {
+        versions: (function () {
+          var u = navigator.userAgent,
+            app = navigator.appVersion;
+          return {
+            // Mobile device
+            mobile:
+              !!u.match(/AppleWebKit.*Mobile.*/) || !!u.match(/AppleWebKit/),
+            // ios device
+            ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
+            // android device or uc browser
+            android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1,
+            // iPhone
+            iPhone: u.indexOf('iPhone') > -1,
+            // iPad
+            iPad: u.indexOf('iPad') > -1,
+            // webapp
+            webApp: u.indexOf('Safari') == -1,
+          };
+        })(),
+        isWeb: () => browser.versions.webApp,
+        isIos: () =>
+          browser.versions.ios ||
+          browser.versions.iPhone ||
+          browser.versions.iPad,
+        isAndroid: () => browser.versions.android,
+        language: (
+          navigator.browserLanguage || navigator.language
+        ).toLowerCase(),
+      };
+
+      function copyUrlToClipboard() {
+        navigator.clipboard
+          .writeText(link)
+          .then(() => {
+            window.location.href = url;
+          })
+          .catch(err => {
+            // Fallback method
+            fallbackCopyTextToClipboard(link);
+          });
+      }
+
+      function downloadApp() {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+
+        const getUrlWithQueryParams = (baseUrl, queryParams) => {
+          let finalUrl = baseUrl + '?';
+          for (const [key, value] of urlParams.entries()) {
+            finalUrl = finalUrl + key + '=' + value + '&';
+            // adding utm params in alnalytics data
+            if (key.startsWith('utm_')) {
+              analyticsData[key] = value;
+            }
+            if (key === 'link') {
+              link = value;
+            }
+          }
+
+          return finalUrl.slice(0, -1);
+        };
+
+        if (browser.isIos()) {
+          url = getUrlWithQueryParams(
+            'https://apps.apple.com/us/app/id6443480917',
+            urlParams,
+          );
+          analyticsData.platform = 'ios';
+
+          document.getElementById('userText').innerHTML =
+            'We need to copy the url to be able to redirect to correct page after App install. Please click on Accept to proceed';
+          document.getElementById('iosButton').style.display = 'block';
+        } else if (browser.isAndroid()) {
+          url = getUrlWithQueryParams('market://details', urlParams);
+          url =
+            'https://play.google.com/store/apps/details?id=com.hdfcbank.payzapp&referrer=' +
+            link;
+          analyticsData.platform = 'android';
+        } else {
+          urlParams.set('id', 'com.hdfcbank.payzapp');
+          urlParams.set('referrer', link);
+          document.getElementById('myIframe').style.display = 'block';
+          document.getElementById('myIframe').style.width =
+            window.innerWidth + 'px';
+          document.getElementById('myIframe').style.height =
+            window.innerHeight + 'px';
+
+          document.getElementById('myIframe').src =
+            'https://v.hdfcbank.com/payzapp/index.html?id=com.hdfcbank.payzapp&mc_id=Pzlaunch_Bulklinks&utm_source=Pzlaunch_Bulklinks&utm_medium=bulklinks&utm_campaign=Pzlaunch_Bulklinks&is_retargeting=false&source_caller=bulk&af_c_id=pixel_signup&shortlink=i1wu8p3r&c=pixel_signup&pid=Whatsapp&af_click_lookback=7d';
+          url = getUrlWithQueryParams('', urlParams);
+        }
+      }
+      setTimeout(() => {
+        downloadApp();
+      }, 1000);
+      window.addEventListener('MOE_LIFECYCLE', function (e) {
+        if (e.detail.name === 'SDK_INITIALIZED') {
+          Moengage.track_event('download_link_click', analyticsData).finally(
+            data => {
+              if (analyticsData.platform === 'android')
+                window.location.href = url;
+            },
+          );
+        }
+      });
+
+      // If MoEngage library not download for any reason then after 15 seconds redirect automatically.
+      setTimeout(() => {
+        if (analyticsData.platform !== 'web') window.location.href = url;
+      }, 15000);
+    </script>
+  </head>
+  <body>
+    <iframe
+      id="myIframe"
+      style="display: none"
+      src="https://example.com"
+    ></iframe>
+    <br />
+    <div id="userText" class="centered-content" style="font-size: 20"></div>
+    <br />
+    <button
+      id="iosButton"
+      style="display: none; font-size: 18"
+      onclick="copyUrlToClipboard()"
+      class="centered-content"
+    >
+      Accept
+    </button>
   </body>
 </html>
